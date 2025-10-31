@@ -1,0 +1,675 @@
+<!-- Generated: glassmorphism single-file portfolio — HTML + CSS only — responsive — GPT-5 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio • Lakshya Gupta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      /*
+        CSS: Glassmorphism, mobile-first, responsive
+        - Variables for color, spacing, radii, blur
+        - Layered gradient background
+        - Focus-visible and reduced motion
+      */
+
+      :root {
+        /* Palette */
+        --color-bg: #0f1724; /* deep navy */
+        --color-primary: #7c5cff; /* soft violet */
+        --color-accent: #4fe3c1; /* aqua */
+        --color-surface: rgba(255, 255, 255, 0.08);
+        --color-border: rgba(255, 255, 255, 0.22);
+        --color-text: #e8ecf3;
+        --color-text-dim: #b3bed1;
+        --color-shadow: rgba(3, 8, 20, 0.6);
+
+        /* Type */
+        --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        --font-heading: "Poppins", ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        --lh: 1.65;
+
+        /* Sizing & spacing */
+        --container: 1100px;
+        --radius: 16px;
+        --radius-lg: 22px;
+        --gap-1: 0.5rem;
+        --gap-2: 1rem;
+        --gap-3: 1.5rem;
+        --gap-4: 2rem;
+        --gap-6: 3rem;
+        --gap-8: 4rem;
+        --gap-10: 5rem;
+        --gap-12: 6rem;
+
+        /* Effects */
+        --blur: 14px;
+        --card-shadow: 0 10px 30px var(--color-shadow);
+
+        /* Breakpoints */
+        --bp-sm: 640px;
+        --bp-lg: 1024px;
+      }
+
+      /* Base */
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        line-height: var(--lh);
+        color: var(--color-text);
+        background: radial-gradient(1200px 800px at 10% -10%, #18223a 0%, transparent 60%),
+                    radial-gradient(1200px 800px at 110% 10%, #0b1b2a 0%, transparent 60%),
+                    linear-gradient(180deg, #0e1523 0%, #0b1220 100%);
+        background-color: var(--color-bg);
+      }
+      img { max-width: 100%; display: block; }
+      a { color: inherit; text-decoration: none; }
+      p { color: var(--color-text-dim); }
+
+      .container {
+        width: min(100%, calc(var(--container) + var(--gap-4)));
+        margin: 0 auto;
+        padding: 0 var(--gap-2);
+      }
+
+      /* Background decorative blobs */
+      .bg {
+        position: fixed;
+        inset: -10vh -10vw;
+        z-index: -1;
+        filter: blur(40px) saturate(120%);
+        pointer-events: none;
+      }
+      .bg::before, .bg::after {
+        content: "";
+        position: absolute;
+        width: 60vmax; height: 60vmax;
+        border-radius: 50%;
+        opacity: 0.35;
+        transform: translate(-20%, -10%);
+      }
+      .bg::before {
+        background: radial-gradient(circle at 30% 30%, var(--color-primary), transparent 60%);
+        left: -10vw; top: -10vh;
+      }
+      .bg::after {
+        background: radial-gradient(circle at 70% 70%, var(--color-accent), transparent 60%);
+        right: -10vw; bottom: -20vh;
+      }
+
+      /* Glass card utility */
+      .glass {
+        background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        backdrop-filter: blur(var(--blur));
+        -webkit-backdrop-filter: blur(var(--blur));
+        box-shadow: var(--card-shadow);
+      }
+
+      /* Header / Nav */
+      header.site-header {
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(10, 16, 28, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      .nav {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: var(--gap-2);
+        padding: var(--gap-2) 0;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center; 
+        gap: 0.6rem;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.3px;
+      }
+      .brand .logo {
+        width: 56px; height: 56px; border-radius: 12px;
+        display: inline-grid; place-items: center;
+        background: transparent;
+        box-shadow: none;
+      }
+      .brand > span:last-child { font-size: 1.25rem; }
+      .nav-links {
+        display: flex; gap: 0.8rem; flex-wrap: wrap;
+      }
+      .nav-links a {
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.04);
+        transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+      }
+      .nav-links a:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
+      .nav-links a:focus-visible { outline: 2px dashed var(--color-accent); outline-offset: 3px; }
+
+      /* Hero */
+      .hero { padding: var(--gap-12) 0 var(--gap-12); min-height: 100svh; display: grid; align-content: center; }
+      .hero .wrap { display: grid; gap: var(--gap-4); }
+      .kicker { color: #ffffff; font-weight: 600; letter-spacing: 0.4px; }
+      .hero h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(1.75rem, 5vw, 3rem);
+        line-height: 1.15; margin: 0.25rem 0 0.5rem;
+      }
+      .hero p { max-width: 60ch; }
+      .cta-row { display: flex; gap: var(--gap-2); flex-wrap: wrap; margin-top: var(--gap-3); }
+      .btn {
+        display: inline-flex; align-items: center; gap: 0.6rem;
+        padding: 0.8rem 1.2rem; border-radius: 999px; font-weight: 600;
+        border: 1px solid rgba(255,255,255,0.16);
+        background: linear-gradient(135deg, rgba(124,92,255,0.5), rgba(79,227,193,0.35));
+        color: #0a0f1c; text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+        box-shadow: 0 10px 24px rgba(124,92,255,0.35), inset 0 0 0 999px rgba(255,255,255,0.02);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+      .btn.white { color: #ffffff; text-shadow: 0 1px 0 rgba(0,0,0,0.25); }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(124,92,255,0.45); }
+      .btn.secondary { background: rgba(255,255,255,0.06); color: var(--color-text); text-shadow: none; }
+
+      /* Section base styles */
+      section { padding: var(--gap-10) 0; }
+      section .section-head { margin-bottom: var(--gap-4); }
+      .section-head h2 {
+        font-family: var(--font-heading);
+        font-size: clamp(1.25rem, 3.2vw, 2rem);
+        margin: 0 0 0.25rem; letter-spacing: 0.2px;
+      }
+      .section-head p { margin: 0; }
+
+      /* About */
+      .about-card { display: grid; gap: var(--gap-3); padding: var(--gap-4); }
+      .about-grid { display: grid; gap: var(--gap-3); }
+      .about-photo {
+        width: 100%; aspect-ratio: 1 / 1; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-border);
+      }
+      .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--gap-2); }
+      .pill {
+        padding: 0.4rem 0.7rem; border-radius: 999px; font-size: 0.9rem;
+        border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.05);
+      }
+
+      /* Projects */
+      .projects-grid { display: grid; gap: var(--gap-3); }
+      .project-card { padding: var(--gap-3); display: grid; gap: var(--gap-2); }
+      .project-thumb { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); }
+      .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .inline-link { color: var(--color-accent); border-bottom: 1px dashed rgba(79,227,193,0.5); }
+
+      /* Experience - "road" timeline */
+      .timeline { display: grid; gap: var(--gap-3); }
+      .timeline-item { position: relative; padding-left: 1.5rem; }
+      .timeline-item::before {
+        content: ""; position: absolute; left: 0.5rem; top: 0.35rem;
+        width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent);
+        box-shadow: 0 0 0 4px rgba(79,227,193,0.15);
+      }
+      .timeline-item::after {
+        content: ""; position: absolute; left: 0.9rem; top: 1.2rem; bottom: -1.2rem;
+        width: 2px; background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+      }
+      .timeline-card { padding: var(--gap-3); }
+
+      /* At sm and up: center road with alternating sides (2 left, 1 right) */
+      @media (min-width: 640px) {
+        .timeline {
+          grid-template-columns: 1fr 44px 1fr; /* left | road | right */
+          column-gap: var(--gap-4);
+          row-gap: var(--gap-6);
+          grid-auto-rows: auto;
+          position: relative;
+        }
+        .timeline::before {
+          content: "";
+          position: absolute; left: 50%; top: 0; bottom: 0; transform: translateX(-50%);
+          width: 6px; border-radius: 6px;
+          background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08));
+          border: 1px solid rgba(255,255,255,0.18);
+          backdrop-filter: blur(6px);
+        }
+        .timeline-item { padding-left: 0; }
+        .timeline-item::after { display: none; }
+        .timeline-item::before { display: none; }
+        .timeline .timeline-card { position: relative; }
+        /* connector from card edge to road */
+        .timeline .timeline-card::after {
+          content: ""; position: absolute; top: 20px; width: 28px; height: 2px;
+          background: rgba(255,255,255,0.25);
+        }
+        /* Place items in separate rows by chronology: alternate L, R, L */
+        .timeline > .timeline-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .timeline > .timeline-item:nth-child(2) { grid-column: 3; grid-row: 2; }
+        .timeline > .timeline-item:nth-child(3) { grid-column: 1; grid-row: 3; }
+
+        /* Left side cards (column 1) */
+        .timeline > .timeline-item:nth-child(1) .timeline-card,
+        .timeline > .timeline-item:nth-child(3) .timeline-card { margin-left: auto; max-width: 520px; }
+        .timeline > .timeline-item:nth-child(1) .timeline-card::after,
+        .timeline > .timeline-item:nth-child(3) .timeline-card::after { right: -36px; }
+
+        /* Right side cards (column 3) */
+        .timeline > .timeline-item:nth-child(2) .timeline-card { margin-right: auto; max-width: 520px; }
+        .timeline > .timeline-item:nth-child(2) .timeline-card::after { left: -36px; }
+      }
+
+      /* Testimonials */
+      .testimonials-grid { display: grid; gap: var(--gap-3); }
+      .quote { padding: var(--gap-3); display: grid; gap: var(--gap-2); }
+      .quote p { font-style: italic; }
+      .quote figcaption { justify-self: end; text-align: right; color: var(--color-text-dim); }
+      /* Center the third testimonial card within the grid */
+      .testimonials-grid > :nth-child(3) { justify-self: center; text-align: center; }
+      .testimonials-grid > :nth-child(3) figcaption { justify-self: center; text-align: center; }
+      @media (min-width: 640px) {
+        .testimonials-grid > :nth-child(3) { grid-column: 1 / -1; max-width: 680px; width: 100%; }
+      }
+
+      /* Contact */
+      .contact-grid { display: grid; gap: var(--gap-4); }
+      form.contact-form { display: grid; gap: var(--gap-2); padding: var(--gap-4); }
+      .field { display: grid; gap: 0.4rem; }
+      .field input, .field textarea {
+        width: 100%; color: var(--color-text); background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 0.85rem 0.9rem;
+        outline: none; transition: border-color 160ms ease, background 160ms ease;
+      }
+      .field input:focus-visible, .field textarea:focus-visible { border-color: var(--color-accent); background: rgba(255,255,255,0.06); }
+      .socials { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+      .icon-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.05); transition: transform 160ms ease; }
+      .icon-btn:hover { transform: translateY(-2px); }
+
+      /* Footer */
+      footer { padding: var(--gap-8) 0 var(--gap-8); color: var(--color-text-dim); position: relative; }
+      .footer-divider {
+        height: 1px; width: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+        margin-bottom: var(--gap-6);
+      }
+      .footer-card { padding: var(--gap-4); }
+      .footer-grid { display: grid; gap: var(--gap-4); align-items: start; }
+      .footer-brand { display: flex; align-items: center; gap: 0.75rem; }
+      .footer-note { margin-top: 0.25rem; font-size: 0.95rem; }
+      .footer-nav { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+      .footer-socials { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+      /* Responsive layouts */
+      @media (min-width: 640px) {
+        .nav-links a { padding: 0.5rem 1rem; }
+        .brand > span:last-child { font-size: 1.5rem; }
+        .hero { padding: var(--gap-12) 0 var(--gap-12); }
+        .about-grid { grid-template-columns: 220px 1fr; align-items: start; }
+        .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+        .contact-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
+        .footer-grid { grid-template-columns: 1.2fr 1fr auto; }
+      }
+      @media (min-width: 1024px) {
+        .nav-links { gap: 1rem; }
+        .hero .wrap { grid-template-columns: 1.2fr 1fr; align-items: center; }
+        .projects-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+
+      /* Accessibility & misc */
+      :focus-visible { outline: 2px dashed var(--color-primary); outline-offset: 3px; }
+      ::selection { background: rgba(124, 92, 255, 0.35); color: #0b1322; }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition: none !important; animation: none !important; }
+      }
+      /* Text highlight utility */
+      .highlight {
+        color: var(--color-accent);
+        text-shadow: 0 0 8px rgba(79, 227, 193, 0.55), 0 0 16px rgba(124, 92, 255, 0.35);
+        transition: text-shadow 200ms ease;
+      }
+      .highlight:hover { text-shadow: 0 0 10px rgba(79, 227, 193, 0.7), 0 0 22px rgba(124, 92, 255, 0.5); }
+      /* Visually hidden utility (kept accessible to screen readers) */
+      .visually-hidden {
+        position: absolute !important;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0 0 0 0);
+        white-space: nowrap; border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background decorative blobs -->
+    <div class="bg" aria-hidden="true"></div>
+
+    <!-- Header / Nav (sticky) -->
+    <header class="site-header" role="banner">
+      <div class="container nav" aria-label="Primary">
+        <a class="brand" href="#" aria-label="Home">
+          <span class="logo" aria-hidden="true">
+            <img src="L.png" alt="LG logo" style="width:36px; height:36px; object-fit: contain;" />
+          </span>
+          <span>Lakshya Gupta</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <p class="visually-hidden">Personal portfolio of Lakshya Gupta — projects, experience, and contact.</p>
+      <!-- Hero -->
+      <section class="hero" id="hero" aria-label="Introduction">
+        <div class="container">
+          <div class="wrap">
+            <div>
+              <div class="kicker">Designer • Developer • Problem Solver</div>
+              <h1>Hi, I’m <span class="highlight">Lakshya Gupta</span> — Jack of All Trades 🃏</h1>
+              <p>
+                I build clean, accessible interfaces with performance and delightful details in mind. From concept to production, I bring ideas to life on the web.
+              </p>
+              <div class="cta-row">
+                <a class="btn white" href="#projects">View Projects</a>
+                <a class="btn secondary" href="Lakshya_resume%20copy.pdf" download aria-label="Download Lakshya Gupta resume (PDF)">Download Résumé</a>
+              </div>
+            </div>
+            <div class="glass about-photo" aria-hidden="true">
+              <img src="h.jpg" alt="Portrait of Lakshya Gupta" style="width:100%; height:100%; object-fit: cover;" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" aria-label="About me">
+        <div class="container">
+          <div class="section-head">
+            <h2>About</h2>
+            <p>Human-centered maker blending design sense with engineering rigor.</p>
+          </div>
+          <article class="glass about-card">
+            <div class="about-grid">
+              <div class="about-photo" aria-hidden="true">
+                <img src="profile.jpeg" alt="Portrait of Lakshya Gupta" style="width:100%; height:100%; object-fit: cover;" />
+              </div>
+              <div>
+                <p>
+                  I’m a front-end engineer who enjoys turning complex problems into simple, beautiful, and intuitive designs. When I’m not pushing pixels, I’m optimizing performance and accessibility.
+                </p>
+                <div class="skills" aria-label="Skills">
+                  <span class="pill">HTML</span>
+                  <span class="pill">CSS / SCSS</span>
+                  <span class="pill">Responsive Design</span>
+                  <span class="pill">Accessibility (A11y)</span>
+                  <span class="pill">Performance</span>
+                  <span class="pill">Design Systems</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" aria-label="Projects">
+        <div class="container">
+          <div class="section-head">
+            <h2>Projects</h2>
+            <p>Selected work showcasing craft, clarity, and care.</p>
+          </div>
+          <div class="projects-grid">
+            <!-- Card 1 -->
+            <article class="glass project-card" aria-label="Project 1">
+              <div class="project-thumb">
+                <img src="project-1.gif" alt="Interface Kit preview animation" style="width:100%; height:100%; object-fit: cover;" />
+              </div>
+              <header>
+                <h3 style="margin:0">Interface Kit</h3>
+                <p>A lightweight system of accessible, composable UI primitives.</p>
+              </header>
+              <div class="tech-list" aria-label="Technologies">
+                <span class="pill">Semantic HTML</span>
+                <span class="pill">CSS Utilities</span>
+                <span class="pill">Accessibility</span>
+              </div>
+              <div>
+                <a class="inline-link" href="#"><!-- placeholder link -->View</a>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="glass project-card" aria-label="Project 2">
+              <div class="project-thumb">
+                <img src="data:image/svg+xml;utf8,\
+                  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>\
+                    <rect width='1200' height='675' fill='%2318223a'/>\
+                    <circle cx='900' cy='240' r='130' fill='%237c5cff' fill-opacity='0.6'/>\
+                    <circle cx='300' cy='420' r='170' fill='%234fe3c1' fill-opacity='0.5'/>\
+                    <rect x='100' y='120' width='700' height='120' rx='20' fill='rgba(255,255,255,0.25)'/>\
+                  </svg>" alt="Project thumbnail placeholder" style="width:100%; height:100%; object-fit: cover;" />
+              </div>
+              <header>
+                <h3 style="margin:0">Portfolio Engine</h3>
+                <p>Responsive portfolio starter emphasizing performance and aesthetics.</p>
+              </header>
+              <div class="tech-list" aria-label="Technologies">
+                <span class="pill">Responsive CSS</span>
+                <span class="pill">Grid & Flexbox</span>
+                <span class="pill">Design Tokens</span>
+              </div>
+              <div>
+                <a class="inline-link" href="#"><!-- placeholder link -->View</a>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="glass project-card" aria-label="Project 3">
+              <div class="project-thumb">
+                <img src="data:image/svg+xml;utf8,\
+                  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>\
+                    <defs><linearGradient id='p3' x1='0' x2='1'><stop offset='0%' stop-color='%230b1b2a'/><stop offset='100%' stop-color='%2318223a'/></linearGradient></defs>\
+                    <rect width='1200' height='675' fill='url(%23p3)'/>\
+                    <rect x='90' y='90' width='1020' height='120' rx='18' fill='rgba(255,255,255,0.2)'/>\
+                    <rect x='90' y='230' width='900' height='320' rx='24' fill='rgba(255,255,255,0.12)'/>\
+                  </svg>" alt="Project thumbnail placeholder" style="width:100%; height:100%; object-fit: cover;" />
+              </div>
+              <header>
+                <h3 style="margin:0">A11y Toolkit</h3>
+                <p>Guides and components for building inclusive web apps.</p>
+              </header>
+              <div class="tech-list" aria-label="Technologies">
+                <span class="pill">WCAG</span>
+                <span class="pill">Keyboard Nav</span>
+                <span class="pill">Color Contrast</span>
+              </div>
+              <div>
+                <a class="inline-link" href="#"><!-- placeholder link -->View</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience / Timeline -->
+      <section id="experience" aria-label="Experience timeline">
+        <div class="container">
+          <div class="section-head">
+            <h2>Experience</h2>
+            <p>A brief timeline of roles and milestones.</p>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="glass timeline-card">
+                <header>
+                  <h3 style="margin:0">Product Designer • Studio X</h3>
+                  <p>2023 — Present</p>
+                </header>
+                <p>Driving end-to-end product design: research, IA, prototyping, and visual systems; collaborating with engineering to ship elegant, accessible experiences.</p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <div class="glass timeline-card">
+                <header>
+                  <h3 style="margin:0">UI Engineer • Product Lab</h3>
+                  <p>2021 — 2023</p>
+                </header>
+                <p>Built responsive interfaces, collaborated with designers, and championed UX best-practices.</p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <div class="glass timeline-card">
+                <header>
+                  <h3 style="margin:0">Freelance Designer</h3>
+                  <p>2019 — 2021</p>
+                </header>
+                <p>Partnered with startups and creators to craft brand-aligned visuals, high-fidelity prototypes, and user-friendly interfaces from idea to handoff.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section id="testimonials" aria-label="Testimonials">
+        <div class="container">
+          <div class="section-head">
+            <h2>Testimonials</h2>
+            <p>Words from collaborators and clients.</p>
+          </div>
+          <div class="testimonials-grid">
+            <figure class="glass quote">
+              <blockquote>
+                <p>“A rare blend of design taste and engineering precision. Reliable and fast.”</p>
+              </blockquote>
+              <figcaption>— Alex Rivera, Design Lead</figcaption>
+            </figure>
+            <figure class="glass quote">
+              <blockquote>
+                <p>“Turned our complex brief into a simple, elegant experience. Great communicator.”</p>
+              </blockquote>
+              <figcaption>— Morgan Lee, PM</figcaption>
+            </figure>
+            <figure class="glass quote">
+              <blockquote>
+                <p>“Obsessed with details and accessibility. Our users noticed the difference.”</p>
+              </blockquote>
+              <figcaption>— Priya Shah, Founder</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" aria-label="Contact form and social links">
+        <div class="container">
+          <div class="section-head">
+            <h2>Contact</h2>
+            <p>Have a project in mind? Let’s talk.</p>
+          </div>
+          <div class="contact-grid">
+            <form class="glass contact-form" action="#" method="post" aria-label="Contact form"><!-- non-functional placeholder form -->
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me a bit about your project" required></textarea>
+              </div>
+              <div>
+                <button class="btn" type="submit" aria-label="Send message (placeholder)"><!-- placeholder button -->Send Message</button>
+              </div>
+            </form>
+            <aside class="glass" style="padding: var(--gap-4);">
+              <h3 style="margin-top:0">Connect</h3>
+              <p>Prefer email? <a class="inline-link" href="#"><!-- placeholder link -->your@email</a></p>
+              <div class="socials" aria-label="Social links">
+                <a class="icon-btn" href="https://github.com/Lakshya-2440" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path fill="currentColor" fill-opacity="0.9" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.49v-1.7c-2.78.61-3.37-1.19-3.37-1.19-.45-1.15-1.1-1.46-1.1-1.46-.9-.61.07-.6.07-.6 1 .07 1.53 1.05 1.53 1.05.89 1.53 2.34 1.09 2.91.83.09-.64.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.69.92.69 1.86v2.76c0 .27.18.58.69.49A10 10 0 0 0 12 2Z"/>
+                  </svg>
+                </a>
+                <a class="icon-btn" href="https://www.linkedin.com/in/lakshyaa/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path fill="currentColor" fill-opacity="0.9" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.45-2.13 2.93v5.67H9.35V9h3.42v1.56h.05c.48-.91 1.65-1.86 3.39-1.86 3.63 0 4.3 2.39 4.3 5.5v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm-1.78 13h3.56V9H3.56v11.44Z"/>
+                  </svg>
+                </a>
+                <a class="icon-btn" href="https://www.instagram.com/la7shya/" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+                  </svg>
+                </a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+      <div class="footer-divider" aria-hidden="true"></div>
+      <div class="container glass footer-card">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">
+              <span class="logo" aria-hidden="true" style="width:48px;height:48px;border-radius:10px;display:inline-grid;place-items:center;">
+                <img src="L.png" alt="LG logo" style="width:32px; height:32px; object-fit: contain;" />
+              </span>
+              <strong>Lakshya Gupta</strong>
+            </div>
+            <p class="footer-note">Designing and building thoughtful, accessible web experiences.</p>
+            <small>© <span id="year">2025</span> Lakshya Gupta.</small>
+          </div>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+            <a href="Lakshya_resume%20copy.pdf" download aria-label="Download Lakshya Gupta resume (PDF)">Resume</a>
+          </nav>
+          <div class="footer-socials" aria-label="Footer socials">
+            <a class="icon-btn" href="https://github.com/Lakshya-2440" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="currentColor" fill-opacity="0.9" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.49v-1.7c-2.78.61-3.37-1.19-3.37-1.19-.45-1.15-1.1-1.46-1.1-1.46-.9-.61.07-.6.07-.6 1 .07 1.53 1.05 1.53 1.05.89 1.53 2.34 1.09 2.91.83.09-.64.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.69.92.69 1.86v2.76c0 .27.18.58.69.49A10 10 0 0 0 12 2Z"/>
+              </svg>
+            </a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/lakshyaa/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="currentColor" fill-opacity="0.9" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.45-2.13 2.93v5.67H9.35V9h3.42v1.56h.05c.48-.91 1.65-1.86 3.39-1.86 3.63 0 4.3 2.39 4.3 5.5v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm-1.78 13h3.56V9H3.56v11.44Z"/>
+              </svg>
+            </a>
+            <a class="icon-btn" href="https://www.instagram.com/la7shya/" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
