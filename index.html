@@ -1,4 +1,3 @@
-<!-- Generated: glassmorphism single-file portfolio — HTML + CSS only — responsive — GPT-5 -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,30 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
 
     <style>
-      /*
-        CSS: Glassmorphism, mobile-first, responsive
-        - Variables for color, spacing, radii, blur
-        - Layered gradient background
-        - Focus-visible and reduced motion
-      */
-
       :root {
-        /* Palette */
-        --color-bg: #0f1724; /* deep navy */
-        --color-primary: #7c5cff; /* soft violet */
-        --color-accent: #4fe3c1; /* aqua */
+        --color-bg: #0f1724;
+        --color-primary: #7c5cff;
+        --color-accent: #4fe3c1;
         --color-surface: rgba(255, 255, 255, 0.08);
         --color-border: rgba(255, 255, 255, 0.22);
         --color-text: #e8ecf3;
         --color-text-dim: #b3bed1;
         --color-shadow: rgba(3, 8, 20, 0.6);
 
-        /* Type */
         --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         --font-heading: "Poppins", ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         --lh: 1.65;
 
-        /* Sizing & spacing */
         --container: 1100px;
         --radius: 16px;
         --radius-lg: 22px;
@@ -46,16 +35,11 @@
         --gap-10: 5rem;
         --gap-12: 6rem;
 
-        /* Effects */
         --blur: 14px;
         --card-shadow: 0 10px 30px var(--color-shadow);
-
-        /* Breakpoints */
         --bp-sm: 640px;
         --bp-lg: 1024px;
       }
-
-      /* Base */
       * { box-sizing: border-box; }
       html, body { height: 100%; }
       body {
@@ -77,8 +61,6 @@
         margin: 0 auto;
         padding: 0 var(--gap-2);
       }
-
-      /* Background decorative blobs */
       .bg {
         position: fixed;
         inset: -10vh -10vw;
@@ -102,8 +84,6 @@
         background: radial-gradient(circle at 70% 70%, var(--color-accent), transparent 60%);
         right: -10vw; bottom: -20vh;
       }
-
-      /* Glass card utility */
       .glass {
         background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
         border: 1px solid var(--color-border);
@@ -112,14 +92,18 @@
         -webkit-backdrop-filter: blur(var(--blur));
         box-shadow: var(--card-shadow);
       }
-
-      /* Header / Nav */
       header.site-header {
-        position: sticky; top: 0; z-index: 50;
-        background: rgba(10, 16, 28, 0.6);
+        position: -webkit-sticky;
+        position: sticky;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(10, 16, 28, 0.8);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.15);
       }
       .nav {
         display: flex; align-items: center; justify-content: space-between;
@@ -177,8 +161,6 @@
       .btn.white { color: #ffffff; text-shadow: 0 1px 0 rgba(0,0,0,0.25); }
       .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(124,92,255,0.45); }
       .btn.secondary { background: rgba(255,255,255,0.06); color: var(--color-text); text-shadow: none; }
-
-      /* Section base styles */
       section { padding: var(--gap-10) 0; }
       section .section-head { margin-bottom: var(--gap-4); }
       .section-head h2 {
@@ -187,8 +169,6 @@
         margin: 0 0 0.25rem; letter-spacing: 0.2px;
       }
       .section-head p { margin: 0; }
-
-      /* About */
       .about-card { display: grid; gap: var(--gap-3); padding: var(--gap-4); }
       .about-grid { display: grid; gap: var(--gap-3); }
       .about-photo {
@@ -200,14 +180,12 @@
         border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.05);
       }
 
-      /* Projects */
       .projects-grid { display: grid; gap: var(--gap-3); }
       .project-card { padding: var(--gap-3); display: grid; gap: var(--gap-2); }
       .project-thumb { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); }
       .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
       .inline-link { color: var(--color-accent); border-bottom: 1px dashed rgba(79,227,193,0.5); }
 
-      /* Experience - "road" timeline */
       .timeline { display: grid; gap: var(--gap-3); }
       .timeline-item { position: relative; padding-left: 1.5rem; }
       .timeline-item::before {
@@ -221,10 +199,9 @@
       }
       .timeline-card { padding: var(--gap-3); }
 
-      /* At sm and up: center road with alternating sides (2 left, 1 right) */
       @media (min-width: 640px) {
         .timeline {
-          grid-template-columns: 1fr 44px 1fr; /* left | road | right */
+          grid-template-columns: 1fr 44px 1fr; 
           column-gap: var(--gap-4);
           row-gap: var(--gap-6);
           grid-auto-rows: auto;
@@ -242,40 +219,40 @@
         .timeline-item::after { display: none; }
         .timeline-item::before { display: none; }
         .timeline .timeline-card { position: relative; }
-        /* connector from card edge to road */
+
         .timeline .timeline-card::after {
           content: ""; position: absolute; top: 20px; width: 28px; height: 2px;
           background: rgba(255,255,255,0.25);
         }
-        /* Place items in separate rows by chronology: alternate L, R, L */
+
         .timeline > .timeline-item:nth-child(1) { grid-column: 1; grid-row: 1; }
         .timeline > .timeline-item:nth-child(2) { grid-column: 3; grid-row: 2; }
         .timeline > .timeline-item:nth-child(3) { grid-column: 1; grid-row: 3; }
 
-        /* Left side cards (column 1) */
+
         .timeline > .timeline-item:nth-child(1) .timeline-card,
         .timeline > .timeline-item:nth-child(3) .timeline-card { margin-left: auto; max-width: 520px; }
         .timeline > .timeline-item:nth-child(1) .timeline-card::after,
         .timeline > .timeline-item:nth-child(3) .timeline-card::after { right: -36px; }
 
-        /* Right side cards (column 3) */
+
         .timeline > .timeline-item:nth-child(2) .timeline-card { margin-right: auto; max-width: 520px; }
         .timeline > .timeline-item:nth-child(2) .timeline-card::after { left: -36px; }
       }
 
-      /* Testimonials */
+
       .testimonials-grid { display: grid; gap: var(--gap-3); }
       .quote { padding: var(--gap-3); display: grid; gap: var(--gap-2); }
       .quote p { font-style: italic; }
       .quote figcaption { justify-self: end; text-align: right; color: var(--color-text-dim); }
-      /* Center the third testimonial card within the grid */
+
       .testimonials-grid > :nth-child(3) { justify-self: center; text-align: center; }
       .testimonials-grid > :nth-child(3) figcaption { justify-self: center; text-align: center; }
       @media (min-width: 640px) {
         .testimonials-grid > :nth-child(3) { grid-column: 1 / -1; max-width: 680px; width: 100%; }
       }
 
-      /* Contact */
+
       .contact-grid { display: grid; gap: var(--gap-4); }
       form.contact-form { display: grid; gap: var(--gap-2); padding: var(--gap-4); }
       .field { display: grid; gap: 0.4rem; }
@@ -289,7 +266,7 @@
       .icon-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.05); transition: transform 160ms ease; }
       .icon-btn:hover { transform: translateY(-2px); }
 
-      /* Footer */
+
       footer { padding: var(--gap-8) 0 var(--gap-8); color: var(--color-text-dim); position: relative; }
       .footer-divider {
         height: 1px; width: 100%;
@@ -303,7 +280,7 @@
       .footer-nav { display: flex; gap: 0.8rem; flex-wrap: wrap; }
       .footer-socials { display: flex; gap: 0.6rem; flex-wrap: wrap; }
 
-      /* Responsive layouts */
+
       @media (min-width: 640px) {
         .nav-links a { padding: 0.5rem 1rem; }
         .brand > span:last-child { font-size: 1.5rem; }
@@ -320,20 +297,19 @@
         .projects-grid { grid-template-columns: repeat(3, 1fr); }
       }
 
-      /* Accessibility & misc */
+
       :focus-visible { outline: 2px dashed var(--color-primary); outline-offset: 3px; }
       ::selection { background: rgba(124, 92, 255, 0.35); color: #0b1322; }
       @media (prefers-reduced-motion: reduce) {
         * { transition: none !important; animation: none !important; }
       }
-      /* Text highlight utility */
+
       .highlight {
         color: var(--color-accent);
         text-shadow: 0 0 8px rgba(79, 227, 193, 0.55), 0 0 16px rgba(124, 92, 255, 0.35);
         transition: text-shadow 200ms ease;
       }
       .highlight:hover { text-shadow: 0 0 10px rgba(79, 227, 193, 0.7), 0 0 22px rgba(124, 92, 255, 0.5); }
-      /* Visually hidden utility (kept accessible to screen readers) */
       .visually-hidden {
         position: absolute !important;
         width: 1px; height: 1px;
@@ -344,10 +320,7 @@
     </style>
   </head>
   <body>
-    <!-- Background decorative blobs -->
     <div class="bg" aria-hidden="true"></div>
-
-    <!-- Header / Nav (sticky) -->
     <header class="site-header" role="banner">
       <div class="container nav" aria-label="Primary">
         <a class="brand" href="#" aria-label="Home">
@@ -367,9 +340,8 @@
       </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" style="padding-top: 90px;">
       <p class="visually-hidden">Personal portfolio of Lakshya Gupta — projects, experience, and contact.</p>
-      <!-- Hero -->
       <section class="hero" id="hero" aria-label="Introduction">
         <div class="container">
           <div class="wrap">
@@ -391,7 +363,7 @@
         </div>
       </section>
 
-      <!-- About -->
+
       <section id="about" aria-label="About me">
         <div class="container">
           <div class="section-head">
@@ -421,7 +393,7 @@
         </div>
       </section>
 
-      <!-- Projects -->
+
       <section id="projects" aria-label="Projects">
         <div class="container">
           <div class="section-head">
@@ -429,14 +401,13 @@
             <p>Selected work showcasing craft, clarity, and care.</p>
           </div>
           <div class="projects-grid">
-            <!-- Card 1 -->
             <article class="glass project-card" aria-label="Project 1">
               <div class="project-thumb">
                 <img src="project-1.gif" alt="Interface Kit preview animation" style="width:100%; height:100%; object-fit: cover;" />
               </div>
               <header>
-                <h3 style="margin:0">Interface Kit</h3>
-                <p>A lightweight system of accessible, composable UI primitives.</p>
+                <h3 style="margin:0">Product Based Website</h3>
+                <p>E-commerce platform with modern UI/UX and seamless checkout experience.</p>
               </header>
               <div class="tech-list" aria-label="Technologies">
                 <span class="pill">Semantic HTML</span>
@@ -444,24 +415,17 @@
                 <span class="pill">Accessibility</span>
               </div>
               <div>
-                <a class="inline-link" href="#"><!-- placeholder link -->View</a>
+                <a class="inline-link" href="#">View</a>
               </div>
             </article>
 
-            <!-- Card 2 -->
             <article class="glass project-card" aria-label="Project 2">
               <div class="project-thumb">
-                <img src="data:image/svg+xml;utf8,\
-                  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>\
-                    <rect width='1200' height='675' fill='%2318223a'/>\
-                    <circle cx='900' cy='240' r='130' fill='%237c5cff' fill-opacity='0.6'/>\
-                    <circle cx='300' cy='420' r='170' fill='%234fe3c1' fill-opacity='0.5'/>\
-                    <rect x='100' y='120' width='700' height='120' rx='20' fill='rgba(255,255,255,0.25)'/>\
-                  </svg>" alt="Project thumbnail placeholder" style="width:100%; height:100%; object-fit: cover;" />
+                <img src="project-2.gif" alt="Portfolio Engine preview animation" style="width:100%; height:100%; object-fit: cover;" />
               </div>
               <header>
-                <h3 style="margin:0">Portfolio Engine</h3>
-                <p>Responsive portfolio starter emphasizing performance and aesthetics.</p>
+                <h3 style="margin:0">3D Designs</h3>
+                <p>Immersive 3D visualizations and interactive product showcases.</p>
               </header>
               <div class="tech-list" aria-label="Technologies">
                 <span class="pill">Responsive CSS</span>
@@ -469,24 +433,17 @@
                 <span class="pill">Design Tokens</span>
               </div>
               <div>
-                <a class="inline-link" href="#"><!-- placeholder link -->View</a>
+                <a class="inline-link" href="#">View</a>
               </div>
             </article>
 
-            <!-- Card 3 -->
             <article class="glass project-card" aria-label="Project 3">
               <div class="project-thumb">
-                <img src="data:image/svg+xml;utf8,\
-                  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>\
-                    <defs><linearGradient id='p3' x1='0' x2='1'><stop offset='0%' stop-color='%230b1b2a'/><stop offset='100%' stop-color='%2318223a'/></linearGradient></defs>\
-                    <rect width='1200' height='675' fill='url(%23p3)'/>\
-                    <rect x='90' y='90' width='1020' height='120' rx='18' fill='rgba(255,255,255,0.2)'/>\
-                    <rect x='90' y='230' width='900' height='320' rx='24' fill='rgba(255,255,255,0.12)'/>\
-                  </svg>" alt="Project thumbnail placeholder" style="width:100%; height:100%; object-fit: cover;" />
+                <img src="project-3.gif" alt="Project 3 preview animation" style="width:100%; height:100%; object-fit: cover;" />
               </div>
               <header>
-                <h3 style="margin:0">A11y Toolkit</h3>
-                <p>Guides and components for building inclusive web apps.</p>
+                <h3 style="margin:0">Designs</h3>
+                <p>Creative and innovative design solutions for various digital platforms.</p>
               </header>
               <div class="tech-list" aria-label="Technologies">
                 <span class="pill">WCAG</span>
@@ -501,7 +458,6 @@
         </div>
       </section>
 
-      <!-- Experience / Timeline -->
       <section id="experience" aria-label="Experience timeline">
         <div class="container">
           <div class="section-head">
@@ -540,7 +496,7 @@
         </div>
       </section>
 
-      <!-- Testimonials -->
+
       <section id="testimonials" aria-label="Testimonials">
         <div class="container">
           <div class="section-head">
@@ -570,7 +526,7 @@
         </div>
       </section>
 
-      <!-- Contact -->
+
       <section id="contact" aria-label="Contact form and social links">
         <div class="container">
           <div class="section-head">
@@ -578,7 +534,7 @@
             <p>Have a project in mind? Let’s talk.</p>
           </div>
           <div class="contact-grid">
-            <form class="glass contact-form" action="#" method="post" aria-label="Contact form"><!-- non-functional placeholder form -->
+            <form class="glass contact-form" action="#" method="post" aria-label="Contact form">
               <div class="field">
                 <label for="name">Name</label>
                 <input id="name" name="name" type="text" placeholder="Your name" required />
@@ -592,12 +548,12 @@
                 <textarea id="message" name="message" rows="5" placeholder="Tell me a bit about your project" required></textarea>
               </div>
               <div>
-                <button class="btn" type="submit" aria-label="Send message (placeholder)"><!-- placeholder button -->Send Message</button>
+                <button class="btn" type="submit" aria-label="Send message (placeholder)">Send Message</button>
               </div>
             </form>
             <aside class="glass" style="padding: var(--gap-4);">
               <h3 style="margin-top:0">Connect</h3>
-              <p>Prefer email? <a class="inline-link" href="#"><!-- placeholder link -->your@email</a></p>
+              <p>Prefer email? <a class="inline-link" href="#">lakshyagupta2440@gmail.com</a></p>
               <div class="socials" aria-label="Social links">
                 <a class="icon-btn" href="https://github.com/Lakshya-2440" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -623,7 +579,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer role="contentinfo">
       <div class="footer-divider" aria-hidden="true"></div>
       <div class="container glass footer-card">
@@ -669,7 +624,24 @@
         </div>
       </div>
     </footer>
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            history.pushState(null, '', targetId);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
-
-
